@@ -1,4 +1,4 @@
-// use type unknown insead of any (relative to any, unknown is safer) 
+// use type "unknown" insead of any (relative to any, unknown is safer) 
 
 function getChai(kind : string | number) {
     if (typeof kind === 'string'){
@@ -10,8 +10,7 @@ function getChai(kind : string | number) {
 
 
 //Truthiness finding 
-
-function serveChai(msg?: string){
+function serveChai(msg?: string){   // with "?" we are saying that msg is optional
     if (msg){
         return `serving ${msg}`;
     }
@@ -50,8 +49,9 @@ function serve( chai: kulhad | Cutting){
 }
 
 
-//********* */
-type chaiOrder = {
+//********* type guard */
+
+type chaiOrder = { 
     type : string,
     sugar : number
 }
@@ -67,7 +67,7 @@ function isChaiOrder(obj: any): obj is chaiOrder{
 
 function serveOrder(item: chaiOrder | string){
     if(isChaiOrder(item)){
-        return `serving ${item.type} chai with ${item.sugar} sugar `
+        return `serving ${item.type} chai with ${item.sugar} sugar ` // here we are narrowing the type of item to chaiOrder and confident that item is chaiOrder with 'type' and 'sugar' properties
     }
 
     return `serving custom chai ${item} `
@@ -81,7 +81,7 @@ type GingerChai = {type: 'ginger', amount: number}
 type ElaichiChai = {type: 'elaichi', aroma: number}
 
 
-type chai = MasalaChai | GingerChai | ElaichiChai;
+type chai = MasalaChai | GingerChai | ElaichiChai; // now chai is a union of MasalaChai, GingerChai, and ElaichiChai
 
 function MakeChai(order: chai){
     switch (order.type) {
@@ -101,14 +101,13 @@ function MakeChai(order: chai){
 function brew(order : MasalaChai | GingerChai){
     if ("spicelevel" in order){
         return `this is MasalaChai`  
-        //we are specifically checking with the single properties because spicelevel is in masalachai only
+        //we are specifically checking with the single properties because spicelevel is only in masalachai 
     }
-
     return `this is GingerChai`   
 }
 
 
-//****any || unknown */
-function isStringArray(arr :unknown): arr is String[]{
-
+//* any || unknown */
+function isStringArray(arr: unknown): arr is String[]{ // abhi ke liye unknown hai but jb ya se value return hoga to String[] data type hoga hi 
+    return Array.isArray(arr) && arr.every(item => typeof item === 'string');
 }

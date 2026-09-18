@@ -11,7 +11,7 @@ let channelName = "Chaiaurcode";
 
 
 
-//** Type Annotation -> btana padta hai ki konsa type ka data hoga
+//** Type Annotation -> btana padta hai ki konsa type ka data hoga -- explicitly telling the type of the data
 let chaiFlavour: string = "masala";
 chaiFlavour = "ginger";
 // chaiFlavour = 1234;

@@ -13,6 +13,7 @@ airLineSeat = "aisle";
 
 // ANY TYPE -> jab hume nhi pata hota ki konsa type ka data aa sakta hai toh hum any use karte hain
 const orders = ["12", "20", "30", "40"];
+// let currentOrder: any // avoid using any type
 let currentOrder: string | undefined; // avoid using any type
 
 for (let order of orders) {
